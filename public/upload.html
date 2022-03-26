@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' href='css/upload.css'>
+<title>제이버웹툰</title>
+</head>
+<body
+	style='display: flex; flex-direction: column; align-items: center;'>
+	<header>
+		<h1>웹툰 등록</h1>
+	</header>
+	<form class='form'>
+		<div class='input-wrap'>
+			<div style='width: 120px;'>
+				<label>웹툰명</label>
+			</div>
+			<input class='title' autofocus>
+		</div>
+		<div class='input-wrap'>
+			<div style='width: 120px;'>
+				<label>장르</label>
+			</div>
+			<input class='short-input'>
+		</div>
+		<div class='input-wrap'>
+			<div style='width: 120px;'>
+				<label>작가명</label>
+			</div>
+			<input class='short-input'>
+		</div>
+		<div class='input-wrap'>
+			<div style='width: 120px;'>
+				<label>작가의 말</label>
+			</div>
+			<textarea class='long-input'></textarea>
+		</div>
+		<div class='input-wrap'>
+			<div style='width: 120px;'>
+				<label>줄거리</label>
+			</div>
+			<textarea class='long-input'></textarea>
+		</div>
+		<div class='input-wrap'>
+			<div style='width: 120px;'>
+				<label>대표 이미지</label>
+			</div>
+			<label for='uploadImage' class='upload-image-btn'>이미지 선택</label>
+			<input type='file' id='uploadImage' style='display:none' accept='image/*'>
+		</div>
+	</form>
+</body>
+</html>

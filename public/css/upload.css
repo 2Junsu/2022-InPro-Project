@@ -1,0 +1,57 @@
+@charset "UTF-8";
+@import 'variable.css';
+
+.form {
+	display: flex;
+	flex-direction: column;
+	margin-top: 50px;
+}
+
+label {
+	font-size: 18px;
+}
+
+input {
+	font-size: 18px;
+	padding: 5px;
+	border-radius: 8px;
+	border: 1px solid black;
+}
+
+textarea {
+	font-size: 18px;
+	padding: 5px;
+	border-radius: 8px;
+}
+
+.short-input {
+	width: 150px;
+}
+
+.title {
+	width: 400px;
+}
+
+.long-input {
+	width: 400px;
+	height: 300px;
+}
+
+.input-wrap {
+	display: flex;
+	margin: 10px 0px;
+}
+
+.upload-image-btn {
+	font-weight: bold;
+	color: white;
+	font-size: 18px;
+	border-radius: 8px;
+	padding: 8px 16px;
+	background-color: var(--main-color);
+}
+
+.upload-image-btn:hover {
+	cursor: pointer;
+	background-color: var(--hover-main-color);
+}
