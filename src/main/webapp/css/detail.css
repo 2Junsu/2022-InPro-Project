@@ -1,0 +1,31 @@
+@charset "UTF-8";
+@import 'variable.css';
+
+.header {
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+}
+
+.upload-btn {
+	padding:8px 16px;
+	background-color:var(--main-color);
+	border-radius:8px;
+	border:1px solid #cccccc;
+	color:white;
+	font-size:18px;
+}
+
+.upload-btn:hover{
+	cursor:pointer;
+	background-color:var(--hover-main-color);
+}
+
+article {
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	margin:20px 0px;
+	padding-bottom:20px;
+	border-bottom:1px solid #cccccc;
+}
