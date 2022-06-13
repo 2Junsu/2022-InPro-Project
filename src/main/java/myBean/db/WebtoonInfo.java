@@ -1,6 +1,7 @@
-package myBean;
+package myBean.db;
 
 public class WebtoonInfo {
+	private int id;
 	private String title;
 	private String genre;
 	private String writer;
@@ -10,6 +11,10 @@ public class WebtoonInfo {
 	
 	public WebtoonInfo() {}
 
+	public int getId() {
+		return id;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -34,6 +39,10 @@ public class WebtoonInfo {
 		return uploadImage;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}

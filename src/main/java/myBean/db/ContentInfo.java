@@ -1,7 +1,8 @@
-package myBean;
+package myBean.db;
 
 public class ContentInfo {
-	private String episode;
+	private int episode;
+	private int webtoon;
 	private String uploadDate;
 	private String title;
 	private String uploadThumbnail;
@@ -9,8 +10,12 @@ public class ContentInfo {
 	
 	public ContentInfo() {}
 
-	public String getEpisode() {
+	public int getEpisode() {
 		return episode;
+	}
+	
+	public int getWebtoon() {
+		return webtoon;
 	}
 
 	public String getUploadDate() {
@@ -29,8 +34,12 @@ public class ContentInfo {
 		return uploadWebtoon;
 	}
 
-	public void setEpisode(String episode) {
+	public void setEpisode(int episode) {
 		this.episode = episode;
+	}
+	
+	public void setWebtoon(int webtoon) {
+		this.webtoon = webtoon;
 	}
 
 	public void setUploadDate(String uploadDate) {

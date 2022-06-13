@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <title>제이버 웹툰</title>
 <script>
 	var thumbnailUrl = './img/thumbnail-preview.jpg'
-	
+
 	window.onload = function() {
 		//대표 이미지 초기 사진
 		document.getElementById("mainImage").src = thumbnailUrl
@@ -17,31 +17,9 @@
 		document.getElementById('uploadImage').addEventListener(
 				'change',
 				function(e) {
-					document.getElementById("mainImage").src = URL.createObjectURL(e.target.files[0])
+					document.getElementById("mainImage").src = URL
+							.createObjectURL(e.target.files[0])
 				})
-	}
-
-	function upload() {
-		var str = ''
-		var obj = document.getElementById('title')
-		str += '웹툰명 : ' + obj.value + '\n'
-
-		obj = document.getElementById('genre')
-		str += '장르 : ' + obj.value + '\n'
-
-		obj = document.getElementById('writer')
-		str += '작가명 : ' + obj.value + '\n'
-
-		obj = document.getElementById('writerText')
-		str += '작가의 말 : ' + obj.value + '\n'
-
-		obj = document.getElementById('summary')
-		str += '줄거리 : ' + obj.value + '\n'
-
-		obj = document.getElementById('uploadImage')
-		str += '대표 이미지 : ' + obj.value + '\n'
-
-		alert(str)
 	}
 </script>
 </head>
@@ -52,7 +30,8 @@
 	<header>
 		<h1>웹툰 등록</h1>
 	</header>
-	<form class='form' action='detail.jsp' method='post'>
+	<form class='form' action='upload_do.jsp' method='post'
+		enctype="multipart/form-data">
 		<div class='input-wrap'>
 			<div style='width: 120px;'>
 				<label>웹툰명</label>
@@ -88,13 +67,15 @@
 				<label>대표 이미지</label>
 			</div>
 			<div style='display: flex; align-items: center;'>
-				<img id='mainImage' class='main-image' alt="main-image" src="./img/thumbnail-preview.jpg">
-				<label for='uploadImage' class='upload-image-btn'>이미지 선택</label>
-				<input type='file' id='uploadImage' name='uploadImage' style='display: none' accept='image/*'>
+				<img id='mainImage' class='main-image' alt="main-image"
+					src="./img/thumbnail-preview.jpg"> <label for='uploadImage'
+					class='upload-image-btn'>이미지 선택</label> <input type='file'
+					id='uploadImage' name='uploadImage' style='display: none'
+					accept='image/*'>
 			</div>
 		</div>
 		<div style='display: flex; justify-content: center; margin-top: 30px;'>
-			<input class='button' type='submit' value='등록' onclick='upload()'>
+			<input class='button' type='submit' value='등록'>
 			<button class='button'>취소</button>
 		</div>
 	</form>

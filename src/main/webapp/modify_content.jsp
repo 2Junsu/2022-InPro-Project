@@ -1,7 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-     pageEncoding="UTF-8"%>
+     pageEncoding="UTF-8" import="java.sql.*, javax.naming.*"%>
 <%
-String webtoon_id=request.getParameter("id");
+String episode_id=request.getParameter("id");
+try {
+	Class.forName("org.mariadb.jdbc.Driver");
+	
+	String DB_URL ="jdbc:mariadb://localhost:3306/webtoon?useSSL=false";
+
+	Connection con = DriverManager.getConnection(DB_URL,"admin","1234");  
+
+	String sql="select title, uploadThumbnail, uploadWebtoon, webtoon_id from content where episode_id=?";
+		
+	PreparedStatement pstmt = con.prepareStatement(sql);
+	
+	pstmt.setInt(1, Integer.parseInt(episode_id));
+
+	ResultSet rs = pstmt.executeQuery();
+	rs.next();
+
+	String webtoon_id=rs.getString("webtoon_id");
+	String title=rs.getString("title");
+	String uploadThumbnail=rs.getString("uploadThumbnail");
+	String uploadWebtoon=rs.getString("uploadWebtoon");
+	
+	rs.close();
+	pstmt.close();
+	con.close();
 %>
 <!DOCTYPE html>
 <html>
@@ -10,23 +34,17 @@ String webtoon_id=request.getParameter("id");
 <link rel='stylesheet' href='css/upload.css'>
 <title>제이버 웹툰</title>
 <script>
-var thumbnailUrl='./img/thumbnail-preview.jpg'
-var webtoonUrl='./img/webtoon-preview.jpg'
 window.onload=function(){
 	var date=new Date().toLocaleString()
 	//등록일을 현재 날짜로 고정
 	document.getElementById('uploadDate').value=date
-	
-	//썸네일, 웹툰 내용 초기 사진
-	document.getElementById("thumbnail").src=thumbnailUrl
-	document.getElementById("webtoon").src=webtoonUrl
 	
 	//이미지 미리보기 구현
 	document.getElementById('uploadThumbnail').addEventListener('change',function(e){
 		document.getElementById("thumbnail").src=URL.createObjectURL(e.target.files[0])
 	})
 	
-	//웹툰 그림 파일 미리보기 구현 (추후에 여러 장 업로드로 변경)
+	//웹툰 그림 파일 미리보기 구현
 	document.getElementById('uploadWebtoon').addEventListener('change',function(e){
 		document.getElementById("webtoon").src=URL.createObjectURL(e.target.files[0])
 	})
@@ -40,11 +58,12 @@ window.onload=function(){
 	<header>
 		<h1>회차별 웹툰 등록</h1>
 	</header>
-	<form class='form' action="uploadDetail_do.jsp" method="post" enctype="multipart/form-data">
+	<form class='form' action="modify_content_do.jsp" method="post" enctype="multipart/form-data">
+		<input type='hidden' name="episode_id" value="<%=episode_id %>">
 		<input type='hidden' name="webtoon_id" value="<%=webtoon_id %>">
 		<div class='input-wrap'>
 			<div style='width: 120px;'>
-				<label>등록일</label>
+				<label>수정일</label>
 			</div>
 			<input type="text" id='uploadDate' name='uploadDate' readonly>
 		</div>
@@ -52,14 +71,15 @@ window.onload=function(){
 			<div style='width: 120px;'>
 				<label>회차 제목</label>
 			</div>
-			<input class='title' id='title' name='title'>
+			<input class='title' id='title' name='title' value="<%=title %>">
 		</div>
 		<div class='input-wrap'>
 			<div style='width: 120px;'>
 				<label>썸네일</label>
 			</div>
 			<div style='display:flex;align-items:center;'>
-				<img class='main-image' alt="main-image" id='thumbnail'>
+				<img class='main-image' alt="main-image" id='thumbnail'
+				src="./upload/<%=uploadThumbnail %>">
 			<label for='uploadThumbnail' class='upload-image-btn'>이미지 선택</label>
 			<input type='file' id='uploadThumbnail' name='uploadThumbnail' style='display: none' accept='image/*'>
 			</div>
@@ -69,7 +89,8 @@ window.onload=function(){
 				<label>웹툰 내용</label>
 			</div>
 			<div style='display:flex;align-items:center;'>
-				<img class='main-image' alt="main-image" id='webtoon'>
+				<img class='main-image' alt="main-image" id='webtoon'
+				src="./upload/<%=uploadWebtoon %>">
 			<label for='uploadWebtoon' class='upload-image-btn'>이미지 선택</label>
 			<input type='file' id='uploadWebtoon' name='uploadWebtoon' style='display: none' accept='image/*'>
 			</div>
@@ -81,3 +102,9 @@ window.onload=function(){
 	</form>
 </body>
 </html>
+<%
+}catch(SQLException e) {
+	out.print(e);
+	return;
+}
+%>

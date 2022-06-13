@@ -15,6 +15,9 @@ a {
 	height: 200px;
 	/* border: 1px solid black; */
 }
+.webtoon-article > img:hover {
+	cursor:pointer;
+}
 
 .webtoon-footer {
 	width: 200px;
@@ -38,6 +41,10 @@ a {
 	all: unset;
 	font-size: 15px;
 	color: #555555;
+}
+
+.search-form{
+	display:flex;
 }
 
 .search-filter {
@@ -100,4 +107,8 @@ a {
 .upload-button:hover{
 	cursor:pointer;
 	background-color:var(--hover-main-color);
+}
+
+.btn:hover{
+	cursor:pointer;
 }
