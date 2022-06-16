@@ -10,9 +10,13 @@ try {
 
 	Connection con = DriverManager.getConnection(DB_URL, "admin", "1234");
 
-	String sql = "select title, uploadThumbnail, uploadWebtoon, uploadDate from content where episode_id=?";
-
+	String sql="update content set viewCnt=viewCnt+1 where episode_id=?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
+	pstmt.setInt(1, Integer.parseInt(episode_id));
+	pstmt.executeUpdate();
+	
+	sql = "select title, uploadThumbnail, uploadWebtoon, uploadDate, viewCnt from content where episode_id=?";
+	pstmt = con.prepareStatement(sql);
 	pstmt.setInt(1, Integer.parseInt(episode_id));
 	ResultSet rs = pstmt.executeQuery();
 	rs.next();
@@ -21,7 +25,8 @@ try {
 	String uploadThumbnail = rs.getString("uploadThumbnail");
 	String uploadWebtoon = rs.getString("uploadWebtoon");
 	String uploadDate = rs.getString("uploadDate");
-
+	String viewCnt = rs.getString("viewCnt");
+	
 	rs.close();
 %>
 <!DOCTYPE html>
@@ -33,8 +38,9 @@ try {
 <body style="padding:50px 100px">
 <a href='main.jsp'><img class='home-button' src='./img/home.png'
 		width='50px' height='50px' alt='home'></a>
-	<header class='header'>
+	<header style="display:flex; align-items:center; justify-content:space-between;">
 		<h1><%=episode_id %>화 : <%=title %></h1>
+		<span>조회수 : <%=viewCnt %>회</span>
 	</header>
 	<hr>
 	<main style="margin-top:50px">

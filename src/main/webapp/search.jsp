@@ -37,6 +37,8 @@ try {
 <title>검색 결과</title>
 </head>
 <body style='display: flex; flex-direction: column; align-items: center;'>
+<a href='main.jsp'><img class='home-button' src='./img/home.png'
+		width='50px' height='50px' alt='home' style="position:absolute; top:30px; left:30px;"></a>
 	<header>
 		<h1><%=type %> : "<%=search %>"에 대한 검색 결과</h1>
 	</header>

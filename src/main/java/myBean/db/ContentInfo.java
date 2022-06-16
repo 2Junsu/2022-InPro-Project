@@ -7,13 +7,15 @@ public class ContentInfo {
 	private String title;
 	private String uploadThumbnail;
 	private String uploadWebtoon;
-	
-	public ContentInfo() {}
+	private int viewCnt;
+
+	public ContentInfo() {
+	}
 
 	public int getEpisode() {
 		return episode;
 	}
-	
+
 	public int getWebtoon() {
 		return webtoon;
 	}
@@ -34,10 +36,14 @@ public class ContentInfo {
 		return uploadWebtoon;
 	}
 
+	public int getViewCnt() {
+		return viewCnt;
+	}
+
 	public void setEpisode(int episode) {
 		this.episode = episode;
 	}
-	
+
 	public void setWebtoon(int webtoon) {
 		this.webtoon = webtoon;
 	}
@@ -57,6 +63,9 @@ public class ContentInfo {
 	public void setUploadWebtoon(String uploadWebtoon) {
 		this.uploadWebtoon = uploadWebtoon;
 	}
-	
-	
+
+	public void setViewCnt(int viewCnt) {
+		this.viewCnt = viewCnt;
+	}
+
 }

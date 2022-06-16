@@ -20,7 +20,7 @@ public class ContentDB {
 	}
 	
 	public void insertRecord(ContentInfo content) throws SQLException {
-		String sql = "INSERT INTO content(episode_id, webtoon_id, title, uploadThumbnail, uploadWebtoon, uploadDate) VALUES(?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO content(episode_id, webtoon_id, title, uploadThumbnail, uploadWebtoon, uploadDate, viewCnt) VALUES(?, ?, ?, ?, ?, ?, ?)";
 
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, content.getEpisode());
